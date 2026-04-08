@@ -9,8 +9,50 @@
     <main>
         <h1>Tu opinion cuenta</h1>
         <p>Deja un comentario acerca de lo que te parecio esta pagina</p>
-        <h2>Contactate </h2>
-        <a href="index.html">Volver</a>
+        <form action="">
+            <Fieldset>
+                <legend>Datos Personales</legend>
+                <label for="">Nombre</label>
+                <br>
+                <input type="text" required>
+                <br>
+                <br>
+            
+                <label for="">Apellido</label>
+                <br>
+                <input type="text" required>
+                <br>
+                <br>
+            </Fieldset>
+            <fieldset>
+                <legend>Puntuacion</legend>
+                <label for="">Califica la pagina</label>
+                <input type="number" min="0" max="10">
+                <br>
+                <br>
+            </fieldset>
+            <fieldset>
+                <legend>Interes</legend>
+                <label for="">La pagina para ti fue:</label>
+                <select name="interes" id="">
+                     <option value="1">Divertida</option>
+                     <option value="2">Informativa</option>
+                     <option value="3">Aburrida</option>
+                </select>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend>Deja tu comentario</legend>
+                <br>
+                <textarea rows="8" cols="50" placeholder="Escribe aqui.."></textarea>
+                <br>
+                <br>
+            </fieldset>
+            <br>
+            <input type="submit" value="Enviar">
+            <input type="reset" value="Limpiar">
+        </form>
+        <a href="index.html"><h2>VOLVER</h2></a>
     </main>
 </body>
 </html>

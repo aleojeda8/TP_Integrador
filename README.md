@@ -1,20 +1,20 @@
-# Mi pagina web
+# Mi página web
     
-## Descripcion
-Esta pagina web esta dedicada al Set 10 de Teamfight Tactics, conocido como Remix Rumble. En ella se explica que es el juego, sus mecanicas principales y por qué este set es considerado uno de los mejores.
+## Descripción
+Esta página web está dedicada al Set 10 de Teamfight Tactics, conocido como Remix Rumble. En ella explico qué es el juego, sus mecánicas principales y por qué este set es considerado uno de los mejores.
 
 ## Contenido
-- Explicacion de qué es Teamfight Tactics
-- Informacion sobre el Set 10
+- Explicación de qué es Teamfight Tactics
+- Información sobre el Set 10
 - Curiosidades del set
 - Sinergias y campeones (K/DA, Pentakill, True Damage, Heartsteel)
-- Videos e imagenes sobre el set
+- Videos e imágenes sobre el set
 
 ## Objetivo
-El objetivo de esta pagina es mostrar de forma personal por que el Set 10 es el mejor, combinando informacion y opinion.
+El objetivo de esta página es mostrar de forma personal por qué el Set 10 es el mejor, combinando información y opinión.
 
-## 💬 Opinión
-Para mi, este es el mejor set de TFT porque combina musica, estrategia y creatividad de una forma unica.
+## Opinión
+Para mí, este es el mejor set de TFT porque combina música, estrategia y creatividad de una forma única.
 
 ## Autor
 Ojeda Alejandro

@@ -200,3 +200,107 @@ tr:hover td {
     background-color: rgba(155, 89, 245, 0.05);
     transition: background-color var(--transicion);
 }
+
+form {
+    display: grid;
+    gap: 15px;
+}
+
+fieldset {
+    border: var(--borde);
+    border-radius: var(--radio);
+    padding: 20px;
+}
+
+fieldset:focus-within {
+    border-color: var(--color-morado);
+    transition: border-color var(--transicion);
+}
+
+legend {
+    color: var(--color-morado);
+    padding: 0 8px;
+    font-size: 0.9rem;
+}
+
+main.opinion {
+    display: block;
+    max-width: 750px;
+    margin: 30px auto;
+    padding: 30px 20px;
+}
+
+label {
+    color: var(--color-texto-secundario);
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    background-color: rgba(155, 89, 245, 0.05);
+    border: var(--borde);
+    border-radius: 5px;
+    padding: 8px 12px;
+    color: var(--color-texto);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color var(--transicion);
+    margin-top: 5px;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--color-morado);
+}
+
+input[type="number"] {
+    width: 100px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input[type="submit"],
+input[type="reset"] {
+    width: auto;
+    padding: 10px 25px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color var(--transicion), color var(--transicion), transform var(--transicion);
+}
+
+input[type="submit"] {
+    background-color: var(--color-morado);
+    color: white;
+    border: 1px solid var(--color-morado);
+    margin-right: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: var(--color-rosa);
+    border-color: var(--color-rosa);
+    transform: translateY(-2px);
+}
+
+input[type="reset"] {
+    background-color: transparent;
+    color: var(--color-texto-secundario);
+    border: var(--borde);
+}
+
+input[type="reset"]:hover {
+    color: var(--color-morado);
+    border-color: var(--color-morado);
+}

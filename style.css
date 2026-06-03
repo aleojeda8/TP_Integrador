@@ -70,7 +70,7 @@ main {
     gap: 25px;
     max-width: 1100px;
     margin: 30px auto;
-    padding: 0 60px;
+    padding: 0 20px;
 }
 
 h1, h2, h3 {
@@ -99,14 +99,29 @@ a:hover {
     color: var(--color-rosa);
 }
 
+section, article {
+    background-color: var(--color-card);
+    border: var(--borde);
+    border-radius: var(--radio);
+    padding: 25px;
+    margin-bottom: 25px;
+    animation: aparecer 0.4s ease both;
+}
+
+section:hover, article:hover {
+    border-color: rgba(155, 89, 245, 0.6);
+    transition: border-color var(--transicion);
+}
+
 aside {
     background-color: var(--color-card);
     border: var(--borde);
     border-left: 4px solid var(--color-morado);
-    padding: 15px 20px;
+    padding: 20px;
     border-radius: var(--radio);
-    margin-bottom: 25px;
-    grid-column: 1 / -1;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
 }
 
 aside h3 {
@@ -115,12 +130,73 @@ aside h3 {
     margin-bottom: 10px;
 }
 
-section, article {
-    background-color: var(--color-card);
+img {
+    max-width: 100%;
+    border-radius: var(--radio);
     border: var(--borde);
+    margin: 10px 0;
+    display: block;
+}
+
+img:hover {
+    transform: scale(1.01);
+    transition: transform var(--transicion);
+}
+
+video, iframe {
+    max-width: 100%;
+    border-radius: var(--radio);
+    margin: 10px 0;
+    display: block;
 }
 section img, article img {
     width: 100%;
     max-width: 700px;
     margin: 10px auto;
+}
+
+ul, ol {
+    padding-left: 20px;
+    color: var(--color-texto-secundario);
+    margin-bottom: 15px;
+}
+
+ul li::marker {
+    color: var(--color-morado);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+caption {
+    color: var(--color-morado);
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+th {
+    background-color: rgba(155, 89, 245, 0.2);
+    padding: 10px;
+    text-align: left;
+    border: var(--borde);
+}
+
+td {
+    padding: 10px;
+    border: var(--borde);
+    color: var(--color-texto-secundario);
+}
+
+td:first-child {
+    color: var(--color-dorado);
+    font-weight: 700;
+}
+
+tr:hover td {
+    background-color: rgba(155, 89, 245, 0.05);
+    transition: background-color var(--transicion);
 }

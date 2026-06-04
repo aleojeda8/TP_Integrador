@@ -16,5 +16,15 @@ El objetivo de esta página es mostrar de forma personal por qué el Set 10 es e
 ## Opinión
 Para mí, este es el mejor set de TFT porque combina música, estrategia y creatividad de una forma única.
 
+## Tecnologías usadas
+- HTML5
+- CSS3
+- Google Fonts (Rajdhani)
+- Git y GitHub
+
+## Cómo ver el proyecto
+1. Clonar el repositorio
+2. Abrir el archivo index.html en el navegador
+
 ## Autor
 Ojeda Alejandro

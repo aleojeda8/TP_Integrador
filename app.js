@@ -72,3 +72,28 @@ if (filtroCosto) {
         mostrarCampeones(resultado);
     });
 }
+
+const formulario = document.getElementById("formulario-opinion");
+
+if (formulario) {
+    formulario.addEventListener("submit", validarFormulario);
+}
+
+function validarFormulario(event) {
+    event.preventDefault();
+
+    try {
+        const nombre = document.getElementById("nombre").value.trim();
+        const apellido = document.getElementById("apellido").value.trim();
+
+        if (nombre === "" || apellido === "") {
+            throw new Error("Debe completar todos los campos obligatorios.");
+        }
+
+        alert("Formulario enviado correctamente.");
+        formulario.reset();
+
+    } catch (error) {
+        alert(error.message);
+    }
+}

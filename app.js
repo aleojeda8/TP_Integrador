@@ -24,6 +24,7 @@ const campeones = [
 
 function mostrarCampeones(lista) {
     const contenedor = document.getElementById("lista-campeones");
+    if (!contenedor) return;
     contenedor.innerHTML = "";
 
     lista.forEach(function (campeon) {
@@ -38,3 +39,17 @@ function mostrarCampeones(lista) {
     });
 }
 mostrarCampeones(campeones);
+
+const buscador = document.getElementById("buscador");
+
+if (buscador) {
+    buscador.addEventListener("input", function () {
+        const texto = buscador.value.toLowerCase();
+
+        const resultado = campeones.filter(function (campeon) {
+            return campeon.banda.toLowerCase().includes(texto);
+        });
+
+        mostrarCampeones(resultado);
+    });
+}

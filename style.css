@@ -536,3 +536,18 @@ label[for="buscador"] {
     background-color: var(--color-rosa);
     transform: translateY(-2px);
 }
+
+#filtro-costo {
+    width: 180px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: rgba(155, 89, 245, 0.08);
+    border: var(--borde);
+    border-radius: var(--radio);
+    color: var(--color-texto);
+    font-family: 'Rajdhani', sans-serif;
+}
+
+#filtro-costo:focus {
+    border-color: var(--color-morado);
+}

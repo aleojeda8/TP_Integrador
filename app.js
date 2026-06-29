@@ -53,3 +53,22 @@ if (buscador) {
         mostrarCampeones(resultado);
     });
 }
+
+const filtroCosto = document.getElementById("filtro-costo");
+
+if (filtroCosto) {
+    filtroCosto.addEventListener("change", function () {
+        const costoSeleccionado = filtroCosto.value;
+
+        if (costoSeleccionado === "todos") {
+            mostrarCampeones(campeones);
+            return;
+        }
+
+        const resultado = campeones.filter(function (campeon) {
+            return campeon.costo == costoSeleccionado;
+        });
+
+        mostrarCampeones(resultado);
+    });
+}

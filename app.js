@@ -130,3 +130,17 @@ secciones.forEach(function (seccion) {
         registrarVisita(seccion);
     });
 });
+
+const btnModo = document.getElementById("btn-modo");
+
+function alternarModo() {
+    document.body.classList.toggle("modo-claro");
+
+    if (document.body.classList.contains("modo-claro")) {
+        btnModo.textContent = "☀️";
+    } else {
+        btnModo.textContent = "🌙";
+    }
+}
+
+btnModo.addEventListener("click", alternarModo);

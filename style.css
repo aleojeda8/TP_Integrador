@@ -561,3 +561,35 @@ label[for="buscador"] {
     padding: 2px 10px;
     border-radius: 12px;
 }
+
+
+#btn-modo {
+    background: transparent;
+    border: var(--borde);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: border-color var(--transicion), background-color var(--transicion);
+    margin-left: auto;
+}
+
+#btn-modo:hover {
+    border-color: var(--color-morado);
+    background-color: rgba(155, 89, 245, 0.1);
+}
+
+
+body.modo-claro {
+    --color-fondo: #f4f2fa;
+    --color-card: #ffffff;
+    --color-texto: #1a1730;
+    --color-texto-secundario: #4a4566;
+    --borde: 1px solid rgba(155, 89, 245, 0.25);
+}
+
+body.modo-claro header,
+body.modo-claro footer {
+    background-color: #ffffff;
+}

@@ -143,4 +143,27 @@ function alternarModo() {
     }
 }
 
-btnModo.addEventListener("click", alternarModo);
+if (btnModo) {
+    btnModo.addEventListener("click", alternarModo);
+}
+
+const opcionesObservador = {
+    threshold: 0.2
+};
+
+function manejarInterseccion(entradas, observador) {
+    entradas.forEach(function (entrada) {
+        if (entrada.isIntersecting) {
+            entrada.target.classList.add("visible");
+            observador.unobserve(entrada.target);
+        }
+    });
+}
+
+const observador = new IntersectionObserver(manejarInterseccion, opcionesObservador);
+
+const seccionesAnimadas = document.querySelectorAll("section, article");
+
+seccionesAnimadas.forEach(function (seccion) {
+    observador.observe(seccion);
+});

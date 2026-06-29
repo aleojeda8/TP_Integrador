@@ -441,3 +441,53 @@ h2::after {
     background: linear-gradient(90deg, var(--color-morado), var(--color-rosa));
     margin-top: 6px;
 }
+
+#lista-campeones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    grid-column: 1 / -1;
+    margin-bottom: 25px;
+}
+
+.campeon-card {
+    background-color: var(--color-card);
+    border: var(--borde);
+    border-radius: var(--radio);
+    padding: 15px;
+    text-align: center;
+    transition: border-color var(--transicion), transform var(--transicion);
+}
+
+.campeon-card:hover {
+    border-color: var(--color-morado);
+    transform: translateY(-3px);
+}
+
+.campeon-card h3 {
+    color: var(--color-morado);
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.campeon-card p {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+}
+.curiosidades-wrap {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+}
+
+.curiosidades-wrap section {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.curiosidades-wrap aside {
+    width: 220px;
+    flex-shrink: 0;
+    margin-bottom: 0;
+}

@@ -97,3 +97,36 @@ function validarFormulario(event) {
         alert(error.message);
     }
 }
+
+const contadorVisitas = {};
+
+function registrarVisita(seccion) {
+    const id = seccion.id || seccion.tagName;
+
+    if (!contadorVisitas[id]) {
+        contadorVisitas[id] = 0;
+    }
+    contadorVisitas[id]++;
+
+    mostrarContador(seccion, contadorVisitas[id]);
+}
+
+function mostrarContador(seccion, cantidad) {
+    let contador = seccion.querySelector(".contador-visitas");
+
+    if (!contador) {
+        contador = document.createElement("span");
+        contador.classList.add("contador-visitas");
+        seccion.appendChild(contador);
+    }
+
+    contador.textContent = "👀 " + cantidad;
+}
+
+const secciones = document.querySelectorAll("section, article");
+
+secciones.forEach(function (seccion) {
+    seccion.addEventListener("mouseover", function () {
+        registrarVisita(seccion);
+    });
+});

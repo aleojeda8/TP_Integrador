@@ -19,8 +19,14 @@ Para mí, este es el mejor set de TFT porque combina música, estrategia y creat
 ## Tecnologías usadas
 - HTML5
 - CSS3
+- JavaScript (DOM, eventos, arrays)
 - Google Fonts (Rajdhani)
 - Git y GitHub
+
+## Funcionalidades con JavaScript
+- Lista de campeones del Set 10 generada dinámicamente con un array
+- Contador de visitas a cada sección (evento mouseover)
+- Botón de modo oscuro/claro (evento click)
 
 ## Cómo ver el proyecto
 1. Clonar el repositorio

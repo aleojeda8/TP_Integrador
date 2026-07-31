@@ -1,11 +1,11 @@
-# 💻 Mi App (Frontend)
+# 🛠️ FullStack Backend
  
-Aplicación web de gestión de usuarios construida con **React**, **TypeScript** y **Vite**, que consume la API de [FullStack Backend](../FullStack_backend).
+API REST para gestión de usuarios con autenticación JWT, control de roles y monitoreo de seguridad, construida con **Node.js**, **Express 5** y **MongoDB**.
  
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![TanStack Router](https://img.shields.io/badge/TanStack_Router-FF4154?style=for-the-badge&logo=react-router&logoColor=white)
+![Node](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Express-5-black?style=for-the-badge&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=jsonwebtokens)
  
 ---
  
@@ -18,127 +18,167 @@ Aplicación web de gestión de usuarios construida con **React**, **TypeScript**
 - [Instalación](#-instalación)
 - [Variables de entorno](#-variables-de-entorno)
 - [Scripts disponibles](#-scripts-disponibles)
-- [Rutas de la aplicación](#-rutas-de-la-aplicación)
-- [Conexión con la API](#-conexión-con-la-api)
+- [Endpoints de la API](#-endpoints-de-la-api)
+- [Roles y permisos](#-roles-y-permisos)
+- [Seguridad](#-seguridad)
 - [Autor](#-autor)
 ---
  
 ## 📖 Descripción
  
-Interfaz web para la gestión de usuarios, con pantallas de login, listado/creación de usuarios y solicitud de edición de datos. Se conecta al backend mediante peticiones autenticadas con **JWT**.
+Backend de una aplicación de gestión de usuarios que expone una API REST con autenticación basada en **JWT**, control de acceso por **roles** (`ROOT`, `ADMIN`, `USER`, `GUEST`), y un conjunto de mecanismos de seguridad como límite de solicitudes, protección contra fuerza bruta y registro de eventos sospechosos.
  
 ## ✨ Características
  
-- 🔐 Login con autenticación JWT (token guardado en `localStorage`).
-- 👥 Alta, listado, edición y baja de usuarios.
-- ✉️ Solicitud de edición de datos personales vía email.
-- 🧭 Ruteo declarativo con TanStack Router.
-- 🎨 Estilado con CSS Modules por componente/página.
-- 🧩 Componentes reutilizables (`Button`, `Modal`, `Navigation`).
+- 🔐 Autenticación con JWT y contraseñas hasheadas con `bcryptjs`.
+- 👥 CRUD de usuarios con control de acceso por rol.
+- 🛡️ Middleware de protección contra ataques de fuerza bruta en el login.
+- 🚦 Rate limiting global de solicitudes.
+- 📝 Registro de eventos de seguridad (`SecurityLog`) y auditoría de eliminación de usuarios (`Audit`).
+- ✅ Validación de datos de entrada con `Joi`.
+- 📧 Envío de emails (solicitudes de edición de datos) vía `Resend`.
+- 🌐 CORS configurado con lista blanca de orígenes permitidos.
 ## 🧰 Tecnologías
  
 | Tecnología | Uso |
 |---|---|
-| React 18/19 | Librería de UI |
-| TypeScript | Tipado estático |
-| Vite | Bundler y servidor de desarrollo |
-| TanStack Router | Ruteo de la aplicación |
-| CSS Modules | Estilos aislados por componente |
+| Node.js + Express 5 | Servidor y enrutamiento |
+| MongoDB + Mongoose | Base de datos y modelado |
+| JSON Web Token | Autenticación |
+| bcryptjs | Hasheo de contraseñas |
+| Joi | Validación de esquemas |
+| express-rate-limit | Límite global de requests |
+| rate-limiter-flexible | Protección anti fuerza bruta |
+| Resend | Envío de correos |
+| dotenv | Manejo de variables de entorno |
+| nodemon | Recarga en desarrollo |
  
 ## 📂 Estructura del proyecto
  
 ```
-mi-app/
-├── public/                        # Assets estáticos (imágenes, videos)
+FullStack_backend/
 ├── src/
-│   ├── api/                       # Funciones de conexión con el backend
-│   │   ├── createUser.ts
-│   │   ├── deleteUser.ts
-│   │   ├── getUsers.ts
-│   │   ├── login.ts
-│   │   ├── requestEditUser.ts
-│   │   ├── types.ts
-│   │   └── updateUser.ts
-│   ├── components/
-│   │   ├── blocks/                # Bloques compuestos (Navigation, Modal, LoginRightSide)
-│   │   └── ui/                    # Componentes de UI genéricos (Button)
+│   ├── app.js                     # Punto de entrada del servidor
 │   ├── config/
-│   │   └── globals.ts             # Configuración global (API_URL)
-│   ├── pages/
-│   │   ├── CreateUser/
-│   │   ├── Home/
-│   │   └── Login/
-│   ├── styles/                    # Estilos globales y variables CSS
-│   ├── App.tsx
-│   ├── main.tsx
-│   └── router.tsx                 # Definición de rutas
-├── index.html
+│   │   ├── cors.js                # Configuración de CORS
+│   │   ├── db.js                  # Conexión a MongoDB
+│   │   └── env.js                 # Validación de variables de entorno
+│   ├── controllers/
+│   │   ├── auth.controller.js
+│   │   └── user.controller.js
+│   ├── dto/
+│   │   └── user.dto.js            # Esquemas de validación (Joi)
+│   ├── helpers/
+│   │   └── response.helper.js     # Formato estándar de respuestas
+│   ├── middlewares/
+│   │   ├── auth.middleware.js     # Verificación de JWT
+│   │   ├── bruteForce.middleware.js
+│   │   ├── rateLimit.middleware.js
+│   │   └── role.middleware.js     # Autorización por rol
+│   ├── models/
+│   │   ├── audit.model.js
+│   │   ├── securityLog.model.js
+│   │   └── user.model.js
+│   ├── routes/
+│   │   ├── auth.routes.js
+│   │   └── user.routes.js
+│   └── services/
+│       ├── auth.service.js
+│       ├── mail.service.js
+│       └── user.service.js
+├── scripts/
+│   └── test-security.js
 ├── package.json
-├── tsconfig.json
-└── vite.config.ts
+└── .env
 ```
  
 ## ⚙️ Instalación
  
 ```bash
 # Clonar el repositorio
-git clone <url-del-repositorio>
-cd mi-app
+git clone https://github.com/aleojeda8/FullStack_backend.git
+cd FullStack_backend
  
 # Instalar dependencias
 npm install
+ 
+# Crear archivo .env (ver sección de variables de entorno)
+cp .env.example .env
  
 # Levantar en modo desarrollo
 npm run dev
 ```
  
-La aplicación quedará disponible en `http://localhost:5173` (puerto por defecto de Vite).
- 
 ## 🔑 Variables de entorno
  
-Actualmente la URL de la API está definida en `src/config/globals.ts`:
+Crear un archivo `.env` en la raíz del proyecto con las siguientes claves:
  
-```ts
-export const API_URL = 'http://localhost:7000';
-```
+| Variable | Descripción |
+|---|---|
+| `PORT` | Puerto donde corre el servidor |
+| `MONGO_URI` | Cadena de conexión a MongoDB |
+| `JWT_SECRET` | Clave secreta para firmar los tokens JWT |
+| `JWT_EXPIRES_IN` | Tiempo de expiración del token (ej. `1h`) |
+| `FRONTEND_URLS` | Orígenes permitidos por CORS, separados por coma |
+| `RESEND_API_KEY` | API Key de Resend para el envío de emails |
+| `RATE_LIMIT_WINDOW_MINUTES` | Ventana de tiempo para el rate limit global |
+| `RATE_LIMIT_MAX_REQUESTS` | Máximo de solicitudes permitidas en la ventana |
+| `LOGIN_WINDOW_MINUTES` | Ventana de tiempo para el control anti fuerza bruta |
+| `LOGIN_MAX_ATTEMPTS` | Intentos de login permitidos antes de bloquear |
+| `LOGIN_BLOCK_MINUTES` | Minutos de bloqueo tras exceder los intentos |
  
-> 💡 Se recomienda migrar este valor a una variable de entorno de Vite (`VITE_API_URL`) para poder configurar distintos entornos (desarrollo, staging, producción) sin tocar el código.
+> ⚠️ El archivo `.env` nunca debe subirse al repositorio (ya está incluido en `.gitignore`).
  
 ## 📜 Scripts disponibles
  
 | Comando | Descripción |
 |---|---|
-| `npm run dev` | Levanta el servidor de desarrollo |
-| `npm run build` | Compila la aplicación para producción |
-| `npm run preview` | Sirve localmente el build de producción |
+| `npm run dev` | Levanta el servidor con recarga automática (nodemon) |
+| `npm start` | Levanta el servidor en modo producción |
+| `npm run test:security` | Corre el script de pruebas de seguridad |
  
-## 🧭 Rutas de la aplicación
+## 🔌 Endpoints de la API
  
-| Ruta | Página | Descripción |
-|---|---|---|
-| `/` | `Home` | Listado y gestión de usuarios |
-| `/login` | `Login` | Inicio de sesión |
-| `/create-user` | `CreateUser` | Alta de nuevo usuario |
+### Autenticación
  
-## 🔗 Conexión con la API
+| Método | Ruta | Descripción | Protegida |
+|---|---|---|---|
+| `POST` | `/auth/login` | Inicia sesión y devuelve un token JWT | No (con anti fuerza bruta) |
  
-La capa `src/api/` centraliza la comunicación con el backend. Todas las peticiones autenticadas envían el token guardado en `localStorage`:
+### Usuarios
  
-```ts
-headers: {
-  Authorization: `Bearer ${token}`,
-}
+| Método | Ruta | Descripción | Roles permitidos |
+|---|---|---|---|
+| `GET` | `/users` | Lista/busca usuarios (por `id` o `email`) | ROOT, ADMIN, USER, GUEST |
+| `POST` | `/users` | Crea un nuevo usuario | ROOT, ADMIN |
+| `PUT` | `/users/:id` | Actualiza un usuario existente | ROOT, ADMIN |
+| `DELETE` | `/users/:id` | Elimina un usuario (con auditoría) | ROOT, ADMIN |
+| `POST` | `/users/request-edit` | Solicita edición de datos propios (envía email) | Cualquier usuario autenticado |
+ 
+Todas las rutas protegidas requieren el header:
+```
+Authorization: Bearer <token>
 ```
  
-| Función | Endpoint consumido |
+## 👤 Roles y permisos
+ 
+| Rol | Descripción |
 |---|---|
-| `login()` | `POST /auth/login` |
-| `getUsers()` | `GET /users` |
-| `createUser()` | `POST /users` |
-| `updateUser()` | `PUT /users/:id` |
-| `deleteUser()` | `DELETE /users/:id` |
-| `requestEditUser()` | `POST /users/request-edit` |
+| `ROOT` | Acceso total, único que puede eliminar a otros `ADMIN` o `ROOT` |
+| `ADMIN` | Gestiona usuarios `USER` y `GUEST`, no puede ver/eliminar `ROOT` |
+| `USER` | Acceso limitado a su propia información y la de otros `USER`/`GUEST` |
+| `GUEST` | Acceso restringido, solo a su propio perfil |
  
-## 👨‍💻 Autor Alejandro Ojeda
+## 🛡️ Seguridad
  
-Proyecto frontend conectado a [FullStack Backend](https://github.com/aleojeda8/FullStack_backend).
+- Contraseñas hasheadas con `bcryptjs` (10 salt rounds).
+- Tokens JWT firmados con expiración configurable.
+- Middleware de **rate limiting** global sobre todas las rutas.
+- Middleware de **anti fuerza bruta** específico para el login (bloqueo temporal por IP + email).
+- Registro de eventos sospechosos en la colección `SecurityLog`.
+- Auditoría de bajas de usuarios en la colección `Audit`, dentro de una transacción de MongoDB.
+- CORS restringido a una lista blanca de orígenes (`FRONTEND_URLS`).
+
+## 👨‍💻 Autor: Alejandro Ojeda
+ 
+Repositorio: [github.com/aleojeda8/FullStack_backend](https://github.com/aleojeda8/FullStack_backend)
